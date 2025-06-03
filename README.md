@@ -11,7 +11,7 @@ from parasshoot.lab import connect_to
 
 machine = connect_to(
     "ash03",  # a favourite
-    username="rm1723",  # shortcode
+    username="ab1234",  # shortcode
     # skipping password arg since password auth disabled by CSG
     key_main_path=...,  # defaults to the path as chosen by Kishan's script afaik
     key_jump_path=...,  # ^
