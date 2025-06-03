@@ -1,9 +1,9 @@
-from lab import *
+from .lab import *
 import os
 from urllib.parse import urlparse as parse
 
 
-def download_all(urls, tos, username):
+def download(urls, tos, username):
     """Download multiple files in parallel to specificed I/O destination.
 
     Args:

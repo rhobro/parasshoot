@@ -1,4 +1,4 @@
-from lab import *
+from .lab import *
 from itertools import batched
 import pandas as pd
 import re
@@ -7,7 +7,7 @@ import re
 PING_SUMMARY_PATTERN = r"\d+\.\d+"
     
 
-def benchmark_ping(host, username, n_parallel=20, n_ping=100, n_times_try_failed=0):
+def ping(host, username, n_parallel=20, n_ping=100, n_times_try_failed=0):
     """Benchmark the ping to a host from all lab machines.
 
     Args:
@@ -27,7 +27,7 @@ def benchmark_ping(host, username, n_parallel=20, n_ping=100, n_times_try_failed
     
     # test batch
     for batch in batches:
-        df_, failed_ = benchmark_ping_selected(host, username, batch, n_ping)
+        df_, failed_ = ping_some(host, batch, username, n_ping)
         df = pd.concat([df, df_])
         failed.extend(failed_)
         break
@@ -37,13 +37,13 @@ def benchmark_ping(host, username, n_parallel=20, n_ping=100, n_times_try_failed
         if len(failed) == 0:
             break
         
-        df_, failed =  benchmark_ping_selected(host, username, failed, n_ping)
+        df_, failed =  ping_some(host, username, failed, n_ping)
         df = pd.concat([df, df_])
         
     return df.sort_values("avg", ascending=False), failed
 
 
-def benchmark_ping_selected(host, username, batch, n_ping):
+def ping_some(host, batch, username, n_ping):
     """Benchmark the ping to a host from a subset of all lab machines. Like above."""
     
     machines = {}

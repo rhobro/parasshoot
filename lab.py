@@ -186,10 +186,7 @@ def connect_to_random(
     # choose jumper
     jumper = _rand_jumper(username, password, key_main_path, timeout)
     
-    machines = MACHINES[:]
-    while len(machines) > 0:
-        host = choose(machines)
-
+    for host in MACHINES:
         try:
             machine = _connect_to_via(
                 host,
@@ -203,7 +200,6 @@ def connect_to_random(
         
         except SSHException as e:
             print(f"failed machine connection to {host}: {e}")
-            machines.remove(host)
     
     # no machines working
     raise RuntimeError("can't find working machine")
