@@ -49,7 +49,7 @@ machine.close()
 ### Ping benchmark
 Test the ping times from each lab machines to a host. This is particularly
 useful to find out which lab machine has the fastest ping time to a particular
-website. For example, when IC Hack tickets release :)
+website. For example, before IC Hack tickets release :)
 
 #### Specific set of machines
 ```python3
@@ -148,4 +148,4 @@ download(
 ```
 
 ## random
-I think I should say here that it's for educational purposes? So yes.
+I think I should say here that it's for educational purposes and obey terms of service? So yes.
