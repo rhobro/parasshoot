@@ -2,6 +2,9 @@
 
 Programmatically SSH into DoC machines and run commands.
 
+Those who haven't used Kishan's script, play around with the key path configs
+and let me know how you get it working.
+
 ## Examples
 
 ### Connection
