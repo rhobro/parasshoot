@@ -1,4 +1,4 @@
-from .lab import *
+from lab import *
 import os
 from urllib.parse import urlparse as parse
 
@@ -11,14 +11,14 @@ def download(urls, tos, username):
         tos (list or str): List of I/O objects to download to (e.g. open file, BytesIO) or destination directory.
         username (str): CID
     """
-    if urls is str:
+    if type(urls) is str:
         with open(urls, "r") as f:
             urls = [l.strip() for l in f.readlines()]
             urls = [l for l in urls if l != ""]
             
     into_dir = False
-    if tos is str:
-        tos = [open(f"{tos}/{file_name(u)}", "w") for u in urls]
+    if type(tos) is str:
+        tos = [open(f"{tos}/{file_name(u)}", "wb") for u in urls]
         into_dir = True
         
     ms = []
@@ -51,4 +51,9 @@ def download(urls, tos, username):
 # extract file name from url
 def file_name(url):
     a = parse(url)
-    return os.path.basename(a.path)
+    a = os.path.basename(a.path)
+    a = a.split(".")
+    name = ".".join(a[:-1])
+    if len(name) > 50:
+        name = name[:50]
+    return f"{name}.{a[-1]}"
